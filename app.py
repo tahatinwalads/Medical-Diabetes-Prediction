@@ -44,14 +44,14 @@ if st.button("Predict"):
     prediction = model.predict(input_data)
     probability = model.predict_proba(input_data)
 
-confidence = max (probability[0])* 100
+    confidence = max(probability[0]) * 100
 
-if prediction[0] == 1:
-    st.error("⚠️ Patient is likely to have Diabetes.")
-    st.write(f"**Confidence:** {confidence:.2f}%")
-else:
-    st.success("✅ Patient is not likely to have Diabetes.")
-    st.write(f"**Confidence:** {confidence:.2f}%")
+    if prediction[0] == 1:
+        st.error("⚠️ Patient is likely to have Diabetes.")
+        st.write(f"**Confidence:** {confidence:.2f}%")
+    else:
+        st.success("✅ Patient is not likely to have Diabetes.")
+        st.write(f"**Confidence:** {confidence:.2f}%")
 
 st.divider()
 st.caption("Developed by Taha Tinwala | Machine Learning Project")
