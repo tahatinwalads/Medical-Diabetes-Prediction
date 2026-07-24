@@ -28,11 +28,23 @@ with col2 :
    bmi = st.number_input("BMI")
    dpf = st.number_input("Diabetes Pedigree Function")
    age = st.number_input("Age", min_value=1)
+if st.button("Predict"):
 
-prediction = model.predict(input_data)
-probability = model.predict_proba(input_data)
+    input_data = np.array([[
+        pregnancies,
+        glucose,
+        bloodpressure,
+        skinthickness,
+        insulin,
+        bmi,
+        dpf,
+        age
+    ]])
 
-confidence = max (probability(0))* 100
+    prediction = model.predict(input_data)
+    probability = model.predict_proba(input_data)
+
+confidence = max (probability[0])* 100
 
 if prediction[0] == 1:
     st.error("⚠️ Patient is likely to have Diabetes.")
@@ -41,5 +53,5 @@ else:
     st.success("✅ Patient is not likely to have Diabetes.")
     st.write(f"**Confidence:** {confidence:.2f}%")
 
-    st.divider()
-    st.caption("Developed by Taha Tinwala | Machine Learning Project")
+st.divider()
+st.caption("Developed by Taha Tinwala | Machine Learning Project")
